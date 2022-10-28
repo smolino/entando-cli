@@ -7,14 +7,15 @@
 # that runs safely with privileges within the container.
 #
 #FROM registry.fedoraproject.org/fedora:latest
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4-200
+#FROM registry.access.redhat.com/ubi8/ubi-minimal:8.4-200
+FROM rockylinux:8.5
 # Don't include container-selinux and remove
 # directories used by dnf that are just taking
 # up space.
 # TODO: rpm --setcaps... needed due to Fedora (base) image builds
 #       being (maybe still?) affected by
 #       https://bugzilla.redhat.com/show_bug.cgi?id=1995337#c3
-RUN microdnf install -y dnf
+#RUN microdnf install -y dnf
 RUN dnf -y update && \
     rpm --setcaps shadow-utils 2>/dev/null && \
     dnf -y install git maven tar java-11-openjdk-devel.x86_64 && \
