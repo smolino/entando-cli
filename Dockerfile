@@ -41,7 +41,9 @@ RUN chmod +x /home/podman/docker && \
     chgrp podman /home/podman/script.sh && \
     chown podman:podman -R /home/podman/
 USER 100730000
-RUN export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
+RUN export JAVA_HOME="/usr/lib/jvm/java-11-openjdk" && \
+    cd /home/podman && \
+    bash ./script.sh
 # RUN /home/podman/script.sh
 COPY entrypoint.sh /entrypoint.sh
 WORKDIR /home/podman
